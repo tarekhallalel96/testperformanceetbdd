@@ -1,12 +1,22 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.8.6-openjdk-11'
+            image 'maven:3.8.6-openjdk-11'  // Assurez-vous que le conteneur Docker contient JMeter
         }
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/ton-repo.git'
+            }
+        }
 
+        stage('Install Dependencies') {
+            steps {
+                sh 'mvn clean install -DskipTests'
+            }
+        }
 
         stage('Run Selenium Tests') {
             steps {
@@ -22,7 +32,7 @@ pipeline {
 
         stage('Generate JMeter Report') {
             steps {
-                sh 'jmeter -g target/jmeter/results/results.jtl -o target/jmeter/reports'
+                sh 'mvn jmeter:results -Djmeter.results.file=target/jmeter/results/results.jtl -Djmeter.report.dir=target/jmeter/reports'
             }
         }
 
