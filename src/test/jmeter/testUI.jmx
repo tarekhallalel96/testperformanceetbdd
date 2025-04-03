@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de test">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables pré-définies">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.RemoteDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig" testname="jp@gc - Remote Driver Config">
+          <boolProp name="WebDriverConfig.acceptinsecurecerts">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <boolProp name="WebDriverConfig.headless">false</boolProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <stringProp name="ChromeDriverConfig.additional_args"></stringProp>
+          <stringProp name="ChromeDriverConfig.binary_path"></stringProp>
+          <stringProp name="EdgeDriverConfig.additional_args"></stringProp>
+          <stringProp name="EdgeDriverConfig.binary_path"></stringProp>
+          <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+          <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+          <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+          <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          <intProp name="InternetExplorerDriverConfig.file_upload_dialog_timeout">1000</intProp>
+          <boolProp name="InternetExplorerDriverConfig.ensure_clean_session">false</boolProp>
+          <boolProp name="InternetExplorerDriverConfig.ignore_protected_mode">false</boolProp>
+          <boolProp name="InternetExplorerDriverConfig.silent">false</boolProp>
+          <stringProp name="InternetExplorerDriverConfig.initial_browser_url">https://www.bing.com/</stringProp>
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_ftp_proxy">true</boolProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_socks_proxy">true</boolProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+          <stringProp name="WebDriverConfig.custom_capabilites"></stringProp>
+          <stringProp name="RemoteDriverConfig.general.selenium.grid.url">http://192.168.1.22:4444</stringProp>
+          <stringProp name="RemoteDriverConfig.general.selenium.capability">EDGE</stringProp>
+          <boolProp name="RemoteDriverConfig.general.selenium.file.detector">false</boolProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.RemoteDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="jp@gc - WebDriver Sampler">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.By
+import org.openqa.selenium.WebElement
+
+// Démarrer le test
+WDS.sampleResult.sampleStart()
+
+// Ouvrir l&apos;application
+WDS.browser.get(&apos;http://192.168.1.95:3000/&apos;)
+
+// Attendre un court instant pour laisser la page se charger
+Thread.sleep(3000) // Pause de 3 secondes
+
+// Trouver et cliquer sur le bouton &quot;Afficher départements&quot;
+WebElement bouton = WDS.browser.findElement(By.xpath(&quot;//button[contains(text(),&apos;Afficher départements&apos;)]&quot;))
+bouton.click()
+
+// Attendre l&apos;affichage de la table (pause de 3 secondes)
+Thread.sleep(3000) 
+
+// Vérifier si la table est affichée
+WebElement table = WDS.browser.findElement(By.xpath(&quot;//table[contains(@class, &apos;table&apos;)]&quot;))
+if (table.isDisplayed()) {
+    WDS.log.info(&quot;✅ La table des départements est affichée !&quot;)
+} else {
+    WDS.log.info(&quot;❌ La table ne s&apos;est pas affichée.&quot;)
+}
+
+// Fin du test
+WDS.sampleResult.sampleEnd()
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">groovy</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

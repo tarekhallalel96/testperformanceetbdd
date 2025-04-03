@@ -20,7 +20,10 @@
       <hashTree>
         <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Requête JDBC">
           <stringProp name="dataSource">MySQLConnection</stringProp>
-          <stringProp name="query">SELECT * FROM employees WHERE first_name = &quot;georgy&quot;</stringProp>
+          <stringProp name="query">SELECT emp_no, first_name, last_name, hire_date 
+FROM employees
+WHERE hire_date &gt; &apos;1986-06-26&apos;;
+</stringProp>
           <stringProp name="queryArguments"></stringProp>
           <stringProp name="queryArgumentsTypes"></stringProp>
           <stringProp name="queryTimeout"></stringProp>
@@ -37,17 +40,17 @@
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="connectionProperties">10</stringProp>
           <stringProp name="dataSource">MySQLConnection</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://127.0.0.1:3306/db</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.1.95:3306/employees</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <stringProp name="initQuery"></stringProp>
           <boolProp name="keepAlive">true</boolProp>
-          <stringProp name="password">admin</stringProp>
+          <stringProp name="password">tarek</stringProp>
           <stringProp name="poolMax">0</stringProp>
           <boolProp name="preinit">false</boolProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
-          <stringProp name="username">admin</stringProp>
+          <stringProp name="username">tarek</stringProp>
         </JDBCDataSource>
         <hashTree/>
       </hashTree>
