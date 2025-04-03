@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1743666771858,860,Requête JDBC,200,OK,Groupe d'unités 1-1,text,true,,47,0,1,1,null,858,0,831
+1743666781850,68,Requête JDBC,200,OK,Groupe d'unités 1-2,text,true,,47,0,1,1,null,68,0,66
+1743666791851,61,Requête JDBC,200,OK,Groupe d'unités 1-3,text,true,,47,0,1,1,null,61,0,59
+1743666801852,75,Requête JDBC,200,OK,Groupe d'unités 1-4,text,true,,47,0,1,1,null,75,0,73
+1743666811851,74,Requête JDBC,200,OK,Groupe d'unités 1-5,text,true,,47,0,1,1,null,74,0,72
+1743666821851,73,Requête JDBC,200,OK,Groupe d'unités 1-6,text,true,,47,0,1,1,null,73,0,71
+1743666831851,73,Requête JDBC,200,OK,Groupe d'unités 1-7,text,true,,47,0,1,1,null,73,0,71
+1743666841851,74,Requête JDBC,200,OK,Groupe d'unités 1-8,text,true,,47,0,1,1,null,74,0,73
+1743666851854,40,Requête JDBC,200,OK,Groupe d'unités 1-9,text,true,,47,0,1,1,null,40,0,38
+1743666861852,70,Requête JDBC,200,OK,Groupe d'unités 1-10,text,true,,47,0,1,1,null,70,0,68
